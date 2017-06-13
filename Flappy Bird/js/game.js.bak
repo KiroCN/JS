@@ -41,3 +41,60 @@ game.States.preload = function(){
 		game.state.start('menu');
 	}
 }
+game.States.menu = function(){
+	this.create = function(){
+		game.add.tileSprite(0,0,game.width,game.height,'background').autoScroll(-10,0); //±³¾°Í¼
+		game.add.tileSprite(0,game.height-112,game.width,112,'ground').autoScroll(-100,0); //µØ°å
+		var titleGroup = game.add.group();
+		titleGroup.create(0,0,'title'); //±êÌâ
+		var bird = titleGroup.create(190, 10, 'bird');
+		bird.animations.add('fly');
+		bird.animations.play('fly',12,true);
+		titleGroup.x = 35;
+		titleGroup.y = 100;
+		game.add.tween(titleGroup).to({ y:120 },1000,null,true,0,Number.MAX_VALUE,true);
+		var btn = game.add.button(game.width/2,game.height/2,'btn',function(){
+			game.state.start('play');
+		});
+		btn.anchor.setTo(0.5,0.5);
+	}
+}
+game.States.play = function(){
+	this.create = function(){
+		this.bg = game.add.tileSprite(0,0,game.width,game.height,'background');
+		this.pipeGroup = game.add.group();
+		this.pipeGroup.enableBody = true;
+		this.ground = game.add.tileSprite(0,game.height-112,game.width,112,'ground');
+		this.bird = game.add.sprite(50,150,'bird'); //Äñ
+		this.bird.animations.add('fly');
+		this.bird.animations.play('fly',12,true);
+		this.bird.anchor.setTo(0.5, 0.5);
+		game.physics.enable(this.bird,Phaser.Physics.ARCADE);
+		this.bird.body.gravity.y = 0;
+		game.physics.enable(this.ground,Phaser.Physics.ARCADE);
+		this.ground.body.immovable = true;
+
+		this.soundFly = game.add.sound('fly_sound');
+		this.soundScore = game.add.sound('score_sound');
+		this.soundHitPipe = game.add.sound('hit_pipe_sound');
+		this.soundHitGround = game.add.sound('hit_ground_sound');
+		this.scoreText = game.add.bitmapText(game.world.centerX-20, 30, 'flappy_font', '0', 36);
+
+		this.readyText = game.add.image(game.width/2, 40, 'ready_text');
+		this.playTip = game.add.image(game.width/2,300,'play_tip');
+		this.readyText.anchor.setTo(0.5, 0);
+		this.playTip.anchor.setTo(0.5, 0);
+
+		this.hasStarted = false;
+		game.time.events.loop(900, this.generatePipes, this);
+		game.time.events.stop(false);
+		game.input.onDown.addOnce(this.statrGame, this);
+	};
+	this.update = function(){
+		if(!this.hasStarted) return;
+		game.physics.arcade.collide(this.bird,this.ground, this.hitGround, null, this);
+		game.physics.arcade.overlap(this.bird, this.pipeGroup, this.hitPipe, null, this);
+		if(this.bird.angle < 90) this.bird.angle += 2.5;
+		this.pipeGroup.forEachExists(this.checkScore,this);
+	}
+}
