@@ -97,4 +97,29 @@ game.States.play = function(){
 		if(this.bird.angle < 90) this.bird.angle += 2.5;
 		this.pipeGroup.forEachExists(this.checkScore,this);
 	}
+	this.statrGame = function(){
+		this.gameSpeed = 200;
+		this.gameIsOver = false;
+		this.hasHitGround = false;
+		this.hasStarted = true;
+		this.score = 0;
+		this.bg.autoScroll(-(this.gameSpeed/10),0);
+		this.ground.autoScroll(-this.gameSpeed,0);
+		this.bird.body.gravity.y = 1150;
+		this.readyText.destroy();
+		this.playTip.destroy();
+		game.input.onDown.add(this.fly, this);
+		game.time.events.start();
+	}
+
+	this.stopGame = function(){
+		this.bg.stopScroll();
+		this.ground.stopScroll();
+		this.pipeGroup.forEachExists(function(pipe){
+			pipe.body.velocity.x = 0;
+		}, this);
+		this.bird.animations.stop('fly', 0);
+		game.input.onDown.remove(this.fly,this);
+		game.time.events.stop(true);
+	}
 }
