@@ -65,4 +65,19 @@ init:function(){
           }
       }
     }
+  },gameOver:function(){
+    this.state=this.STATE_GAMEOVER;
+    clearInterval(this.timer);
+    this.timer=null;
+    this.paint();
+  },
+  pause:function(){
+    if(this.state==this.STATE_RUNNING){
+      this.state=this.STATE_PAUSE;
+    }
+  },
+  myContinue:function(){
+    if(this.state==this.STATE_PAUSE){
+      this.state=this.STATE_RUNNING;
+    }
   },
