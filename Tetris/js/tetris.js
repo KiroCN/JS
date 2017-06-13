@@ -81,3 +81,124 @@ init:function(){
       this.state=this.STATE_RUNNING;
     }
   },
+  rotateR:function(){
+    if(this.state==this.STATE_RUNNING){
+      this.currShape.rotateR();
+      if(this.outOfBounds()||this.hit()){
+        this.currShape.rotateL();
+      }
+    }
+  },
+  rotateL:function(){
+    if(this.state==this.STATE_RUNNING){
+      this.currShape.rotateL();
+      if(this.outOfBounds()||this.hit()){
+        this.currShape.rotateR();
+      }
+    }
+  },
+  moveR:function(){
+    this.currShape.moveR();
+    if(this.outOfBounds()||this.hit()){
+      this.currShape.moveL();
+    }
+  },
+  moveL:function(){
+    this.currShape.moveL();
+    if(this.outOfBounds()||this.hit()){
+      this.currShape.moveR();
+    }
+  },
+  outOfBounds:function(){
+    var cells=this.currShape.cells;
+    for(var i=0;i<cells.length;i++){
+      if(cells[i].col<0||cells[i].col>=this.CN){
+        return true;
+      }
+    }
+    return false;
+  },
+  hit:function(){
+    var cells=this.currShape.cells;
+    for(var i=0;i<cells.length;i++){
+      if(this.wall[cells[i].row][cells[i].col]){
+        return true;
+      }
+    }
+    return false;
+  },
+  paint:function(){
+    this.pg.innerHTML=this.pg.innerHTML.replace(/<img(.*?)>/g,"");
+    this.paintShape();
+    this.paintWall();
+    this.paintNext();
+    this.paintScore();
+    this.paintState();
+  },
+  paintScore:function(){
+    $("span")[0].innerHTML=this.score;
+    $("span")[1].innerHTML=this.lines;
+  },
+  drop:function(){
+    if(this.state==this.STATE_RUNNING){
+      if(this.canDrop()){
+        this.currShape.drop();
+      }else{
+        this.landIntoWall();
+        var ln=this.deleteLines();
+        this.score+=this.SCORES[ln];
+        this.lines+=ln;
+        if(!this.isGameOver()){
+          this.currShape=this.nextShape;
+          this.nextShape=this.randomShape();
+        }else{
+          clearInterval(this.timer);
+          this.timer=null;
+          this.state=this.STATE_GAMEOVER;
+          this.paint();
+        }
+      }
+    }
+  },
+  deleteLines:function(){
+    for(var row=0,lines=0;row<this.RN;row++){
+      if(this.isFull(row)){
+        this.deleteL(row);
+        lines++;
+      }
+    }
+    return lines;
+  },
+  isFull:function(row){
+    var line=this.wall[row];    
+    for(var c=0;c<this.CN;c++){
+      if(!line[c]){
+        return false;
+      }
+    }
+    return true;
+  },
+  deleteL:function(row){
+    this.wall.splice(row,1);
+    this.wall.unshift([]);
+    for(var r=row;r>0;r--){
+      for(var c=0;c<this.CN;c++){
+        if(this.wall[r][c]){
+          this.wall[r][c].row++;
+        }
+      }
+    }
+  },
+  isGameOver:function(){
+    var cells=this.nextShape.cells;
+    for(var i=0;i<cells.length;i++){
+      var cell=this.wall[cells[i].row][cells[i].col];
+      if(cell){
+        return true;
+      }
+    }
+    return false;
+  },
+
+
+
