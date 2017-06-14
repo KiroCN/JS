@@ -175,4 +175,28 @@ game.States.play = function(){
 		this.pipeGroup.setAll('outOfBoundsKill',true);
 		this.pipeGroup.setAll('body.velocity.x', -this.gameSpeed);
 	}
+	this.resetPipe = function(topPipeY,bottomPipeY){
+		var i = 0;
+		this.pipeGroup.forEachDead(function(pipe){
+			if(pipe.y<=0){
+				pipe.reset(game.width, topPipeY);
+				pipe.hasScored = false;
+			}else{
+				pipe.reset(game.width, bottomPipeY);
+			}
+			pipe.body.velocity.x = -this.gameSpeed;
+			i++;
+		}, this);
+		return i == 2;
+	}
+
+	this.checkScore = function(pipe){
+		if(!pipe.hasScored && pipe.y<=0 && pipe.x<=this.bird.x-17-54){
+			pipe.hasScored = true;
+			this.scoreText.text = ++this.score;
+			this.soundScore.play();
+			return true;
+		}
+		return false;
+	}
 }

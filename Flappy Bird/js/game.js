@@ -200,3 +200,8 @@ game.States.play = function(){
 		return false;
 	}
 }
+game.state.add('boot',game.States.boot);
+game.state.add('preload',game.States.preload);
+game.state.add('menu',game.States.menu);
+game.state.add('play',game.States.play);
+game.state.start('boot');
