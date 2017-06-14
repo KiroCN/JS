@@ -122,4 +122,26 @@ game.States.play = function(){
 		game.input.onDown.remove(this.fly,this);
 		game.time.events.stop(true);
 	}
+	this.fly = function(){
+		this.bird.body.velocity.y = -350;
+		game.add.tween(this.bird).to({angle:-30}, 100, null, true, 0, 0, false); //上升时头朝上
+		this.soundFly.play();
+	}
+
+	this.hitPipe = function(){
+		if(this.gameIsOver) return;
+		this.soundHitPipe.play();
+		this.gameOver();
+	}
+	this.hitGround = function(){
+		if(this.hasHitGround) return;
+		this.hasHitGround = true;
+		this.soundHitGround.play();
+		this.gameOver(true);
+	}
+	this.gameOver = function(show_text){
+		this.gameIsOver = true;
+		this.stopGame();
+		if(show_text) this.showGameOverText();
+	};
 }
