@@ -144,4 +144,35 @@ game.States.play = function(){
 		this.stopGame();
 		if(show_text) this.showGameOverText();
 	};
+	this.showGameOverText = function(){
+		this.scoreText.destroy();
+		game.bestScore = game.bestScore || 0;
+		if(this.score > game.bestScore) game.bestScore = this.score;
+		this.gameOverGroup = game.add.group();
+		var gameOverText = this.gameOverGroup.create(game.width/2,0,'game_over');
+		var scoreboard = this.gameOverGroup.create(game.width/2,70,'score_board');
+		var currentScoreText = game.add.bitmapText(game.width/2 + 60, 105, 'flappy_font', this.score+'', 20, this.gameOverGroup);
+		var bestScoreText = game.add.bitmapText(game.width/2 + 60, 153, 'flappy_font', game.bestScore+'', 20, this.gameOverGroup);
+		var replayBtn = game.add.button(game.width/2, 210, 'btn', function(){
+			game.state.start('play');
+		}, this, null, null, null, null, this.gameOverGroup);
+		gameOverText.anchor.setTo(0.5, 0);
+		scoreboard.anchor.setTo(0.5, 0);
+		replayBtn.anchor.setTo(0.5, 0);
+		this.gameOverGroup.y = 30;
+	}
+	this.generatePipes = function(gap){
+		gap = gap || 100;
+		var position = (505 - 320 - gap) + Math.floor((505 - 112 - 30 - gap - 505 + 320 + gap) * Math.random());
+		var topPipeY = position-360;
+		var bottomPipeY = position+gap;
+
+		if(this.resetPipe(topPipeY,bottomPipeY)) return;
+
+		var topPipe = game.add.sprite(game.width, topPipeY, 'pipe', 0, this.pipeGroup);
+		var bottomPipe = game.add.sprite(game.width, bottomPipeY, 'pipe', 1, this.pipeGroup);
+		this.pipeGroup.setAll('checkWorldBounds',true);
+		this.pipeGroup.setAll('outOfBoundsKill',true);
+		this.pipeGroup.setAll('body.velocity.x', -this.gameSpeed);
+	}
 }
