@@ -1,0 +1,477 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+  <meta name="generator" content="Madoko, version 1.1.3" />
+  <meta name="viewport" content="initial-scale=1.0" />
+  <meta name="author" content="谢鑫" />
+  <title>JavaScript FinalWork-Vue.js</title>
+  <style type="text/css"  class="link">
+  /*# sourceURL=madoko.css */
+  
+  .madoko .toc>.tocblock .tocblock .tocblock {
+    margin-left: 2.25em;
+  }
+  .madoko .toc>.tocblock .tocblock {
+    margin-left: 1.5em;
+  }
+  .madoko .toc-contents>.tocblock>.tocitem {
+    font-weight: bold;
+  }
+  .madoko .toc {
+    margin-top: 1em;
+  }
+  .madoko p.para-continue {
+    margin-bottom: 0pt;
+  }
+  .madoko .para-block+p {
+    margin-top: 0pt;
+  }
+  .madoko ul.para-block, .madoko ol.para-block {
+    margin-top: 0pt;
+    margin-bottom: 0pt;
+  }
+  .madoko ul.para-end, .madoko ol.para-end {
+    margin-bottom: 1em;
+  }
+  .madoko dl {
+    margin-left: 0em;
+  }
+  .madoko blockquote {
+    font-style: italic;
+  }
+  .madoko a.localref {
+    text-decoration: none;
+  }
+  .madoko a.localref:hover {
+    text-decoration: underline;
+  }
+  .madoko .footnotes {
+    font-size: smaller;
+    margin-top: 2em;
+  }
+  .madoko .footnotes hr {
+    width: 50%;
+    text-align: left;
+  }
+  .madoko .footnote { 
+    margin-left: 1em;
+  }
+  .madoko .footnote-before {
+    margin-left: -1em;
+    width: 1em;
+    display: inline-block;
+  }
+  .madoko .align-center, .madoko .align-center>p {
+    text-align: center !important;
+  }
+  .madoko .align-center pre {
+    text-align: left;
+  }
+  .madoko .align-center>* {
+    margin-left: auto !important;
+    margin-right: auto !important;
+  }
+  .madoko .align-left, .madoko .align-left>p {
+    text-align: left !important;
+  }
+  .madoko .align-left>* {
+    margin-left: 0pt !important;
+    margin-right: auto !important;
+  }
+  .madoko .align-right, .madoko .align-right>p {
+    text-align: right !important;
+  }
+  .madoko .align-right>* {
+    margin-left: auto !important;
+    margin-right: 0pt !important;
+  }
+  .madoko .align-center>table,
+  .madoko .align-left>table,
+  .madoko .align-right>table {
+    text-align: left !important;
+  }
+  .madoko .equation-before {
+    float: right;
+  }
+  .madoko .bibitem {
+    font-size: smaller;
+  }
+  .madoko .bibsearch {
+    font-size: x-small;
+    text-decoration:none;
+    color: black;
+    font-family: "Segoe UI Symbol", Symbola, serif;
+  }
+  .madoko .block, .madoko .figure, .madoko .bibitem, .madoko .equation, .madoko div.math {
+    margin-top: 1ex;
+    margin-bottom: 1ex;
+  }
+  .madoko .figure {
+    padding: 0.5em;
+    margin-left: 0pt;
+    margin-right: 0pt;
+  }
+  .madoko .hidden {
+    display: none;
+  }
+  .madoko .invisible {
+    visibility: hidden;
+  }
+  .madoko.preview .invisible {
+    visibility: visible;
+    opacity: 0.5;
+  }
+  .madoko code.code, .madoko span.code {
+    white-space: pre-wrap;
+  }
+  .madoko hr, hr.madoko {
+    border: none;
+    border-bottom: black solid 1px;
+    margin-bottom: 0.5ex;
+  }
+  .madoko .framed>*:first-child {
+    margin-top: 0pt;
+  }
+  .madoko .framed>*:last-child {
+    margin-bottom: 0pt;
+  }
+  .madoko ul.list-style-type-dash {
+      list-style-type: none !important;
+  }
+  .madoko ul.list-style-type-dash > li:before {
+      content: "\2013"; 
+      position: absolute;
+      margin-left: -1em; 
+  }
+  .madoko table.madoko {
+    border-collapse: collapse;
+  }
+  .madoko td, .madoko th {
+    padding: 0ex 0.5ex;
+    margin: 0pt;
+    vertical-align: top;
+  }
+  .madoko .cell-border-left {
+    border-left: 1px solid black;
+  }
+  .madoko .cell-border-right {
+    border-right: 1px solid black;
+  }
+  .madoko thead>tr:first-child>.cell-line,
+  .madoko tbody:first-child>tr:first-child>.cell-line {
+    border-top: 1px solid black;
+    border-bottom: none;
+  }
+  .madoko .cell-line, .madoko .cell-double-line {
+    border-bottom: 1px solid black;
+    border-top: none;
+  }
+  .madoko .cell-double-line {
+    border-top: 1px solid black;
+    padding-top: 1.5px !important;
+  }
+  .madoko .input-mathpre .MathJax_Display {
+    text-align: left !important;
+  }
+  .madoko div.input-mathpre {
+    text-align: left;
+    margin-top: 1.5ex;
+    margin-bottom: 1ex;
+  }
+  .madoko .math-rendering {
+    text-align: left;
+    white-space: pre;
+    color: gray;
+  }
+  .madoko .mathdisplay {
+    text-align: center;
+  }
+  .madoko .pretty table {
+    border-collapse: collapse;
+  }
+  .madoko .pretty td {
+    padding: 0em;
+  }
+  .madoko .pretty td.empty {
+    min-width: 1.5ex;
+  }
+  .madoko .pretty td.expander {
+    width: 100em;
+  }
+  body.madoko, .madoko .serif {
+    font-family: Cambria,"Times New Roman","Liberation Serif","Times",serif;
+  }
+  .madoko .sans-serif {
+    font-family: "Calibri", "Optima", sans-serif;
+  }
+  .madoko .symbol {
+    font-family: "Segoe UI Symbol", Symbola, serif;
+  }
+  body.madoko {  
+    -webkit-text-size-adjust: 100%;       
+    text-rendering: optimizeLegibility;
+  }
+  body.madoko {
+    max-width: 88ex; 
+    margin: 1em auto;
+    padding: 0em 2em;  
+  }
+  body.preview.madoko {
+    padding: 0em 1em;
+  }
+  .madoko p {
+    text-align: justify;
+  }
+  .madoko h1, .madoko h2, .madoko h3, .madoko h4 { 
+    margin-top: 1.22em; 
+    margin-bottom: 1ex;
+  }
+  .madoko h1+p, .madoko h2+p, .madoko h3+p, .madoko h4+p, .madoko h5+p  { 
+    margin-top: 1ex;    
+  }
+  .madoko h5, .madoko h6 { 
+    margin-top: 1ex;
+    font-size: 1em;
+  }
+  .madoko h5 { 
+    margin-bottom: 0.5ex;
+  }
+  .madoko h5 + p {
+    margin-top: 0.5ex;
+  }
+  .madoko h6 { 
+    margin-bottom: 0pt;
+  }
+  .madoko h6 + p {
+    margin-top: 0pt;
+  }
+  .madoko pre, .madoko code, .madoko kbd, .madoko samp, .madoko tt, 
+  .madoko .monospace, .madoko .token-indent, .madoko .reveal pre, .madoko .reveal code, .madoko .email {
+    font-family: Consolas,"Andale Mono WT","Andale Mono",Lucida Console,Monaco,monospace,monospace;
+    font-size: 0.85em;
+  }
+  .madoko pre code, .madoko .token-indent {
+    font-size: 0.95em;
+  }
+  .madoko pre code {
+    font-family: inherit !important;
+  }
+  .madoko ol.linenums li {
+    background-color: white;
+    list-style-type: decimal;
+  }
+  .madoko .remote {
+    background-color: #F0FFF0;
+  }
+  .madoko .remote + * {
+    margin-top: 0pt;
+  }
+  @media print {
+    body.madoko {
+      font-size: 10pt;
+    }
+    @page {
+      margin: 1in 1.5in;
+    }
+  }
+  @media only screen and (max-device-width:1024px) {
+    body.madoko {
+      padding: 0em 0.5em;    
+    }
+    .madoko li {
+      text-align: left;
+    }
+  }
+  
+    </style>
+  
+  </head>
+<body class="madoko">
+
+<div class="body madoko" style="line-adjust:0">
+
+<div class="titleblock align-center para-block" style="text-align:center;line-adjust:0">
+<div class="titleheader align-center" style="text-align:center;line-adjust:0">
+<div class="title para-block" style="font-size:xx-large;font-weight:bold;margin-bottom:0.5ex;line-adjust:0">JavaScript FinalWork-Vue.js</div></div>
+<div class="authors align-center" style="text-align:center;width:80%;line-adjust:0"><table class="authorrow columns block" style="margin-top:2ex;width:100%;line-adjust:0">
+<tbody><tr><td class="author column" style="text-align:center;line-adjust:0">
+<div class="authorname" style="font-size:large;line-adjust:0">谢鑫</div></td></tr></tbody></table></div></div><h2 id="sec-vuejs" class="h1" data-heading-depth="1" style="display:block"><span class="heading-before"><span class="heading-label">1</span>.&#8194;</span>Vue.js简介</h2>
+<p class="p noindent">Vue.js的作者为Evan You，任职于Google Creative Lab，虽然Vue是一个个人项目，但在发展前景上个人认为绝不输于Google的AngularJs，下面我会将Vue与Angular（Angular 1.0+版本）做一些简单的比较。
+</p>
+<p class="p indent">Vue的主要特点就和它官网<a href="http://cn.vuejs.org" data-linkid="http://cn.vuejs.org">http://cn.vuejs.org</a>所介绍的那样：
+</p>
+<p class="p indent">(1) 简洁 (2) 轻量 (3)快速 (4) 数据驱动 (5) 模块友好 (6) 组件化
+</p><h2 id="section" class="h1" data-heading-depth="1" style="display:block"><span class="heading-before"><span class="heading-label">2</span>.&#8194;</span>简单</h2>
+<p class="p noindent">下面看一段Angular的实现双向绑定的代码
+</p>
+<pre class="para-block pre-fenced pre-fenced3 language-html lang-html html colorized" style="display:block"><code>//html
+<span style="color:navy">&lt;body</span> <span style="color:purple">ng</span>-<span style="color:purple">app</span>=<span style="color:purple">&quot;myApp&quot;</span><span style="color:navy">&gt;</span>
+    <span style="color:navy">&lt;div</span> <span style="color:purple">ng</span>-<span style="color:purple">controller</span>=<span style="color:purple">&quot;myCtrl&quot;</span><span style="color:navy">&gt;</span>
+        <span style="color:navy">&lt;p</span><span style="color:navy">&gt;</span>{{ note }}<span style="color:navy">&lt;/p&gt;</span>
+        <span style="color:navy">&lt;input</span> <span style="color:purple">type</span>=<span style="color:purple">&quot;</span><span style="color:purple">text</span><span style="color:purple">&quot;</span> <span style="color:purple">ng</span>-<span style="color:purple">model</span>=<span style="color:purple">&quot;note&quot;</span><span style="color:navy">&gt;</span>
+    <span style="color:navy">&lt;/div&gt;</span>
+<span style="color:navy">&lt;/body&gt;</span></code></pre>
+<pre class="para-block pre-fenced pre-fenced3 language-javascript lang-javascript javascript colorized" style="display:block"><code><span style="color:darkgreen">// js</span>
+<span style="color:blue">var</span> myModule = angular.module(<span style="color:maroon">&#39;</span><span style="color:maroon">myApp</span><span style="color:maroon">&#39;</span>, []);
+myModule.controller(<span style="color:maroon">&#39;</span><span style="color:maroon">myCtrl</span><span style="color:maroon">&#39;</span>, [<span style="color:maroon">&#39;</span><span style="color:maroon">$scopp</span><span style="color:maroon">&#39;</span>, <span style="color:blue">function</span>($scope) {
+    $scope.note = <span style="color:maroon">&#39;</span><span style="color:maroon">&#39;</span>;
+]);</code></pre>
+<p class="p noindent para-continued">然后再看一下Vue的代码
+</p>
+<pre class="para-block pre-fenced pre-fenced3 language-html lang-html html colorized" style="display:block"><code>  // html
+<span style="color:navy">&lt;body</span><span style="color:navy">&gt;</span>
+    <span style="color:navy">&lt;div</span> <span style="color:purple">id</span>=<span style="color:purple">&quot;app&quot;</span><span style="color:navy">&gt;</span>
+        <span style="color:navy">&lt;p</span><span style="color:navy">&gt;</span>{{ note }}<span style="color:navy">&lt;/p&gt;</span>
+        <span style="color:navy">&lt;input</span> <span style="color:purple">type</span>=<span style="color:purple">&quot;</span><span style="color:purple">text</span><span style="color:purple">&quot;</span> <span style="color:purple">v</span>-<span style="color:purple">model</span>=<span style="color:purple">&quot;note&quot;</span><span style="color:navy">&gt;</span>
+    <span style="color:navy">&lt;/div&gt;</span>
+<span style="color:navy">&lt;/body&gt;</span></code></pre>
+<pre class="para-block pre-fenced pre-fenced3 language-javascript lang-javascript javascript colorized" style="display:block"><code><span style="color:darkgreen">// js</span>
+<span style="color:blue">var</span> vm = <span style="color:blue">new</span> Vue({
+    el: <span style="color:maroon">&#39;</span><span style="color:maroon">#app</span><span style="color:maroon">&#39;</span>,
+    data: {
+        note: <span style="color:maroon">&#39;</span><span style="color:maroon">&#39;</span>
+    }
+})</code></pre><h2 id="section" class="h1" data-heading-depth="1" style="display:block"><span class="heading-before"><span class="heading-label">3</span>.&#8194;</span>不失优雅</h2>
+<p class="p noindent">Vue虽然是一个比较轻量级的框架，简单轻量的同时还非常的人性化，其提供的API也是非常的容易理解，同时也提供了一些很便捷的指令和属性。
+例如：
+</p>
+<p class="p indent">（1）绑定click事件
+</p>
+<pre class="para-block pre-fenced pre-fenced3 language-html lang-html html colorized" style="display:block"><code>     <span style="color:navy">&lt;a</span> <span style="color:purple">v</span>-<span style="color:purple">on</span>:<span style="color:purple">click</span>=<span style="color:purple">&quot;doSomething&quot;</span><span style="color:navy">&gt;</span><span style="color:navy">&lt;/a&gt;</span></code></pre>
+<p class="p noindent para-continued">可以简写为：
+</p>
+<pre class="para-block pre-fenced pre-fenced3 language-html lang-html html colorized" style="display:block"><code>     <span style="color:navy">&lt;a</span> @<span style="color:purple">click</span>=<span style="color:purple">&quot;doSomething&quot;</span><span style="color:navy">&gt;</span><span style="color:navy">&lt;/a&gt;</span></code></pre>
+<p class="p noindent para-continued">(2) 绑定动态属性
+</p>
+<pre class="para-block pre-fenced pre-fenced3 language-html lang-html html colorized" style="display:block"><code>     <span style="color:navy">&lt;a</span> <span style="color:purple">v</span>-<span style="color:purple">bind</span>:<span style="color:purple">href</span>=<span style="color:purple">&quot;url&quot;</span><span style="color:navy">&gt;</span><span style="color:navy">&lt;/a&gt;</span></code></pre>
+<p class="p noindent para-continued">可以简写为：
+</p>
+<pre class="para-block pre-fenced pre-fenced3 language-html lang-html html colorized" style="display:block"><code>      <span style="color:navy">&lt;a</span> :<span style="color:purple">href</span>=<span style="color:purple">&quot;url&quot;</span><span style="color:navy">&gt;</span><span style="color:navy">&lt;/a&gt;</span></code></pre>
+<p class="p noindent para-continued">(3) 便捷的修饰符
+</p>
+<pre class="para-block pre-fenced pre-fenced3 language-html lang-html html colorized" style="display:block"><code>     <span style="color:darkgreen">&lt;!--</span><span style="color:darkgreen"> 阻止单击事件冒泡 </span><span style="color:darkgreen">--&gt;</span>
+     <span style="color:navy">&lt;a</span> @<span style="color:purple">click</span>.<span style="color:purple">stop</span>=<span style="color:purple">&quot;doSomething&quot;</span><span style="color:navy">&gt;</span><span style="color:navy">&lt;/a&gt;</span>
+
+     <span style="color:darkgreen">&lt;!--</span><span style="color:darkgreen"> 只在按下回车键的时候触发事件 </span><span style="color:darkgreen">--&gt;</span>
+     <span style="color:navy">&lt;input</span> @<span style="color:purple">keyup</span>.<span style="color:purple">enter</span>=<span style="color:purple">&quot;submit&quot;</span><span style="color:navy">&gt;</span></code></pre>
+<p class="p noindent para-continued">(4) 实用的参数特性
+</p>
+<pre class="para-block pre-fenced pre-fenced3 language-html lang-html html colorized" style="display:block"><code>     <span style="color:darkgreen">&lt;!--</span><span style="color:darkgreen"> debounce 设置一个最小的延时 </span><span style="color:darkgreen">--&gt;</span>
+     <span style="color:navy">&lt;input</span> <span style="color:purple">v</span>-<span style="color:purple">model</span>=<span style="color:purple">&quot;note&quot;</span> <span style="color:purple">debounce</span>=<span style="color:purple">&quot;500&quot;</span><span style="color:navy">&gt;</span>
+
+     <span style="color:darkgreen">&lt;!--</span><span style="color:darkgreen"> 在 &quot;change&quot; 而不是 &quot;input&quot; 事件中更新数据 </span><span style="color:darkgreen">--&gt;</span>
+     <span style="color:navy">&lt;input</span> <span style="color:purple">v</span>-<span style="color:purple">model</span>=<span style="color:purple">&quot;msg&quot;</span> <span style="color:purple">lazy</span><span style="color:navy">&gt;</span></code></pre><h2 id="section" class="h1" data-heading-depth="1" style="display:block"><span class="heading-before"><span class="heading-label">4</span>.&#8194;</span>小巧</h2>
+<p class="p noindent">说起小巧，那应该首先要关注下Vue的源码大小，Vue的生产版本（即min版）源码仅为72.9kb，官网称gzip压缩后只有25.11kb，相比Angular的144kb缩小了一半。
+</p>
+<p class="p indent">小巧的一种好处就是可以让用户更自由的选择相应的解决方案，在配合其他库方面它给了用户更大的空间。
+</p>
+<p class="p indent">如Vue的核心默认是不包含路由和 Ajax 功能，但是如果项目中需要路由和AJAX，可以直接使用Vue提供的官方库Vue-router及第三方插件vue-resource，同时你也可以使用其他你想要使用的库或插件，如jQuery的AJAX等。
+</p><h2 id="section" class="h1" data-heading-depth="1" style="display:block"><span class="heading-before"><span class="heading-label">5</span>.&#8194;</span>不乏大匠</h2>
+<p class="p noindent">Vue虽然小巧，但是“麻雀虽小五脏俱全”，在构建大型应用的时候也是得心应手。
+</p>
+<p class="p indent">(1) 模块化
+</p>
+<p class="p indent">结合一些第三方模块构建工具，如CommonJS、RequireJS或者SeaJs，可以轻松实现代码的模块化。
+</p>
+<p class="p indent">但是在这里我不推荐使用上述构建工具，直接使用ES6的模块化功能，再结合Webpack进行相应打包是目前最热门的方案。
+</p>
+<p class="p indent">不了解ES6模块功能的可以详见：<a href="http://es6.ruanyifeng.com/#docs/module]" data-linkid="http://es6.ruanyifeng.com/#docs/module">http://es6.ruanyifeng.com/#docs/module</a>
+</p>
+<p class="p noindent">(2) 组件化
+</p>
+<p class="p indent">Vue的组件化功能可谓是它的一大亮点，通过将页面上某一组件的html、CSS、js代码放入一个.vue的文件中进行管理可以大大提高代码的维护性。
+</p>
+<p class="p indent">例如：
+</p>
+<pre class="para-block pre-fenced pre-fenced3 language-html lang-html html colorized" style="display:block"><code>// App.vue
+<span style="color:navy">&lt;template</span><span style="color:navy">&gt;</span>
+    <span style="color:navy">&lt;div</span> <span style="color:purple">class</span>=<span style="color:purple">&quot;box&quot;</span> <span style="color:purple">v</span>-<span style="color:purple">text</span>=<span style="color:purple">&quot;note&quot;</span><span style="color:navy">&gt;</span><span style="color:navy">&lt;/div&gt;</span>
+<span style="color:navy">&lt;/template&gt;</span>
+
+<span style="color:navy">&lt;script</span><span style="color:navy">&gt;</span>
+export default {
+    data () {
+        return {
+            note: <span style="color:maroon">&#39;</span><span style="color:maroon">这是一个组件的html模板！</span><span style="color:maroon">&#39;</span>
+        }
+    }
+}
+<span style="color:navy">&lt;/script&gt;</span>
+
+<span style="color:navy">&lt;style</span> <span style="color:purple">scoped</span><span style="color:navy">&gt;</span>
+.box {
+    color: #000;
+}
+<span style="color:navy">&lt;/style&gt;</span></code></pre>
+<p class="p noindent para-continued">我们还可以在组件里写一些预处理语言：
+</p>
+<pre class="para-block pre-fenced pre-fenced3 language-html lang-html html colorized" style="display:block"><code>  // App.vue
+<span style="color:navy">&lt;template</span> <span style="color:purple">lang</span>=<span style="color:purple">&#39;jade&#39;</span><span style="color:navy">&gt;</span>
+    div(class=&quot;box&quot; v-text=&quot;text&quot;)
+<span style="color:navy">&lt;/template&gt;</span>
+
+<span style="color:navy">&lt;script</span><span style="color:navy">&gt;</span>
+export default {
+    data () {
+        return {
+            note: <span style="color:maroon">&#39;</span><span style="color:maroon">这是一个组件的html模板！</span><span style="color:maroon">&#39;</span>
+        }
+    }
+}
+<span style="color:navy">&lt;/script&gt;</span>
+
+<span style="color:navy">&lt;style</span> <span style="color:purple">lang</span>=<span style="color:purple">&quot;stylus&quot;</span><span style="color:navy">&gt;</span>
+.box 
+    color: #000
+<span style="color:navy">&lt;/style&gt;</span></code></pre>
+<p class="p noindent para-continued">(3) 路由
+</p>
+<p class="p indent">和Angular一样，Vue也具有它的路由功能。通过路由功能，我们可以实现各个组件的按需加载，轻松构建单页应用。下面是一个简单的路由配置文件：
+</p>
+<pre class="para-block pre-fenced pre-fenced3 language-javascript lang-javascript javascript colorized" style="display:block"><code><span style="color:darkgreen">// router.js</span>
+
+<span style="color:maroon">&#39;</span><span style="color:maroon">use strict</span><span style="color:maroon">&#39;</span>
+
+<span style="color:blue">export</span> <span style="color:blue">default</span> <span style="color:blue">function</span>(router) {
+    router.map({
+        <span style="color:maroon">&#39;</span><span style="color:maroon">/</span><span style="color:maroon">&#39;</span>: {
+            component: <span style="color:blue">function</span> (resolve) {
+              require([<span style="color:maroon">&#39;</span><span style="color:maroon">./components/Foo.vue</span><span style="color:maroon">&#39;</span>], resolve)
+            }
+        },
+        <span style="color:maroon">&#39;</span><span style="color:maroon">/foo</span><span style="color:maroon">&#39;</span>: {
+            component: <span style="color:blue">function</span> (resolve) {
+              require([<span style="color:maroon">&#39;</span><span style="color:maroon">./components/Foo.vue</span><span style="color:maroon">&#39;</span>], resolve)
+            }
+        },
+        <span style="color:maroon">&#39;</span><span style="color:maroon">/bar</span><span style="color:maroon">&#39;</span>: {
+            component: <span style="color:blue">function</span> (resolve) {
+              require([<span style="color:maroon">&#39;</span><span style="color:maroon">./components/Bar.vue</span><span style="color:maroon">&#39;</span>], resolve)
+            }
+        }
+    })
+}</code></pre><h2 id="section" class="h1" data-heading-depth="1" style="display:block"><span class="heading-before"><span class="heading-label">6</span>.&#8194;</span>总结</h2>
+<p class="p noindent">个人认为前端的一些技术都是融会贯通的，学习一门语言或者框架本身并不是为了学习它的技术，最重要的是学习它的思维，只有思维层面得到了延伸，学习其他技术的时候会发现得心应手。Vue带给我们的是前端一种解决问题的新的思维。
+</p>
+<div class="logomadoko" style="display:block;text-align:right;font-size:xx-small;margin-top:4em">Created with&nbsp;<a href="https://www.madoko.net">Madoko.net</a>.</div><span data-line=""></span></div>
+<svg id='math-svg-paths' style='display:none' version='1.1' viewBox='0 0 0 0' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink'>
+<defs>
+<path d='M3.298 2.391C3.298 2.361 3.298 2.341 3.128 2.172C1.883 0.917 1.564 -0.966 1.564 -2.491C1.564 -4.224 1.943 -5.958 3.168 -7.203C3.298 -7.323 3.298 -7.342 3.298 -7.372C3.298 -7.442 3.258 -7.472 3.198 -7.472C3.098 -7.472 2.202 -6.795 1.614 -5.529C1.106 -4.433 0.986 -3.328 0.986 -2.491C0.986 -1.714 1.096 -0.508 1.644 0.618C2.242 1.843 3.098 2.491 3.198 2.491C3.258 2.491 3.298 2.461 3.298 2.391Z' id='g2-40'/>
+<path d='M2.022 -0.01C2.022 -0.667 1.773 -1.056 1.385 -1.056C1.056 -1.056 0.857 -0.807 0.857 -0.528C0.857 -0.259 1.056 0 1.385 0C1.504 0 1.634 -0.04 1.733 -0.13C1.763 -0.149 1.773 -0.159 1.783 -0.159S1.803 -0.149 1.803 -0.01C1.803 0.727 1.455 1.325 1.126 1.654C1.016 1.763 1.016 1.783 1.016 1.813C1.016 1.883 1.066 1.923 1.116 1.923C1.225 1.923 2.022 1.156 2.022 -0.01Z' id='g1-59'/>
+<path d='M3.945 -3.786C3.786 -3.786 3.646 -3.786 3.507 -3.646C3.347 -3.497 3.328 -3.328 3.328 -3.258C3.328 -3.019 3.507 -2.909 3.696 -2.909C3.985 -2.909 4.254 -3.148 4.254 -3.547C4.254 -4.035 3.786 -4.403 3.078 -4.403C1.733 -4.403 0.408 -2.979 0.408 -1.574C0.408 -0.677 0.986 0.11 2.022 0.11C3.447 0.11 4.284 -0.946 4.284 -1.066C4.284 -1.126 4.224 -1.196 4.164 -1.196C4.115 -1.196 4.095 -1.176 4.035 -1.096C3.248 -0.11 2.162 -0.11 2.042 -0.11C1.415 -0.11 1.146 -0.598 1.146 -1.196C1.146 -1.604 1.345 -2.57 1.684 -3.188C1.993 -3.756 2.54 -4.184 3.088 -4.184C3.427 -4.184 3.806 -4.055 3.945 -3.786Z' id='g1-99'/>
+<path d='M3.656 -3.985H4.513C4.712 -3.985 4.812 -3.985 4.812 -4.184C4.812 -4.294 4.712 -4.294 4.543 -4.294H3.716L3.925 -5.43C3.965 -5.639 4.105 -6.346 4.164 -6.466C4.254 -6.655 4.423 -6.804 4.633 -6.804C4.672 -6.804 4.932 -6.804 5.121 -6.625C4.682 -6.585 4.583 -6.237 4.583 -6.087C4.583 -5.858 4.762 -5.738 4.951 -5.738C5.21 -5.738 5.499 -5.958 5.499 -6.336C5.499 -6.795 5.041 -7.024 4.633 -7.024C4.294 -7.024 3.666 -6.844 3.367 -5.858C3.308 -5.649 3.278 -5.549 3.039 -4.294H2.351C2.162 -4.294 2.052 -4.294 2.052 -4.105C2.052 -3.985 2.142 -3.985 2.331 -3.985H2.989L2.242 -0.05C2.062 0.917 1.893 1.823 1.375 1.823C1.335 1.823 1.086 1.823 0.897 1.644C1.355 1.614 1.445 1.255 1.445 1.106C1.445 0.877 1.265 0.757 1.076 0.757C0.817 0.757 0.528 0.976 0.528 1.355C0.528 1.803 0.966 2.042 1.375 2.042C1.923 2.042 2.321 1.455 2.501 1.076C2.819 0.448 3.049 -0.757 3.059 -0.827L3.656 -3.985Z' id='g1-102'/>
+<path d='M2.829 -6.227C2.829 -6.426 2.69 -6.585 2.461 -6.585C2.192 -6.585 1.923 -6.326 1.923 -6.057C1.923 -5.868 2.062 -5.699 2.301 -5.699C2.531 -5.699 2.829 -5.928 2.829 -6.227ZM2.072 -2.481C2.192 -2.77 2.192 -2.79 2.291 -3.059C2.371 -3.258 2.421 -3.397 2.421 -3.587C2.421 -4.035 2.102 -4.403 1.604 -4.403C0.667 -4.403 0.289 -2.959 0.289 -2.869C0.289 -2.77 0.389 -2.77 0.408 -2.77C0.508 -2.77 0.518 -2.79 0.568 -2.949C0.837 -3.885 1.235 -4.184 1.574 -4.184C1.654 -4.184 1.823 -4.184 1.823 -3.866C1.823 -3.656 1.753 -3.447 1.714 -3.347C1.634 -3.088 1.186 -1.933 1.026 -1.504C0.927 -1.245 0.797 -0.917 0.797 -0.707C0.797 -0.239 1.136 0.11 1.614 0.11C2.55 0.11 2.919 -1.335 2.919 -1.425C2.919 -1.524 2.829 -1.524 2.8 -1.524C2.7 -1.524 2.7 -1.494 2.65 -1.345C2.471 -0.717 2.142 -0.11 1.634 -0.11C1.465 -0.11 1.395 -0.209 1.395 -0.438C1.395 -0.687 1.455 -0.827 1.684 -1.435L2.072 -2.481Z' id='g1-105'/>
+<path d='M0.877 -0.588C0.847 -0.438 0.787 -0.209 0.787 -0.159C0.787 0.02 0.927 0.11 1.076 0.11C1.196 0.11 1.375 0.03 1.445 -0.169C1.455 -0.189 1.574 -0.658 1.634 -0.907L1.853 -1.803C1.913 -2.022 1.973 -2.242 2.022 -2.471C2.062 -2.64 2.142 -2.929 2.152 -2.969C2.301 -3.278 2.829 -4.184 3.776 -4.184C4.224 -4.184 4.314 -3.816 4.314 -3.487C4.314 -2.869 3.826 -1.594 3.666 -1.166C3.577 -0.936 3.567 -0.817 3.567 -0.707C3.567 -0.239 3.915 0.11 4.384 0.11C5.32 0.11 5.689 -1.345 5.689 -1.425C5.689 -1.524 5.599 -1.524 5.569 -1.524C5.469 -1.524 5.469 -1.494 5.42 -1.345C5.22 -0.667 4.892 -0.11 4.403 -0.11C4.234 -0.11 4.164 -0.209 4.164 -0.438C4.164 -0.687 4.254 -0.927 4.344 -1.146C4.533 -1.674 4.951 -2.77 4.951 -3.337C4.951 -4.005 4.523 -4.403 3.806 -4.403C2.909 -4.403 2.421 -3.766 2.252 -3.537C2.202 -4.095 1.793 -4.403 1.335 -4.403S0.687 -4.015 0.588 -3.836C0.428 -3.497 0.289 -2.909 0.289 -2.869C0.289 -2.77 0.389 -2.77 0.408 -2.77C0.508 -2.77 0.518 -2.78 0.578 -2.999C0.747 -3.706 0.946 -4.184 1.305 -4.184C1.504 -4.184 1.614 -4.055 1.614 -3.726C1.614 -3.517 1.584 -3.407 1.455 -2.889L0.877 -0.588Z' id='g1-110'/>
+<path d='M4.672 -2.72C4.672 -3.756 3.975 -4.403 3.078 -4.403C1.743 -4.403 0.408 -2.989 0.408 -1.574C0.408 -0.588 1.076 0.11 2.002 0.11C3.328 0.11 4.672 -1.265 4.672 -2.72ZM2.012 -0.11C1.584 -0.11 1.146 -0.418 1.146 -1.196C1.146 -1.684 1.405 -2.76 1.724 -3.268C2.222 -4.035 2.79 -4.184 3.068 -4.184C3.646 -4.184 3.945 -3.706 3.945 -3.108C3.945 -2.72 3.746 -1.674 3.367 -1.026C3.019 -0.448 2.471 -0.11 2.012 -0.11Z' id='g1-111'/>
+<path d='M0.448 1.215C0.369 1.554 0.349 1.624 -0.09 1.624C-0.209 1.624 -0.319 1.624 -0.319 1.813C-0.319 1.893 -0.269 1.933 -0.189 1.933C0.08 1.933 0.369 1.903 0.648 1.903C0.976 1.903 1.315 1.933 1.634 1.933C1.684 1.933 1.813 1.933 1.813 1.733C1.813 1.624 1.714 1.624 1.574 1.624C1.076 1.624 1.076 1.554 1.076 1.465C1.076 1.345 1.494 -0.279 1.564 -0.528C1.694 -0.239 1.973 0.11 2.481 0.11C3.636 0.11 4.882 -1.345 4.882 -2.809C4.882 -3.746 4.314 -4.403 3.557 -4.403C3.059 -4.403 2.58 -4.045 2.252 -3.656C2.152 -4.194 1.724 -4.403 1.355 -4.403C0.897 -4.403 0.707 -4.015 0.618 -3.836C0.438 -3.497 0.309 -2.899 0.309 -2.869C0.309 -2.77 0.408 -2.77 0.428 -2.77C0.528 -2.77 0.538 -2.78 0.598 -2.999C0.767 -3.706 0.966 -4.184 1.325 -4.184C1.494 -4.184 1.634 -4.105 1.634 -3.726C1.634 -3.497 1.604 -3.387 1.564 -3.218L0.448 1.215ZM2.202 -3.108C2.271 -3.377 2.54 -3.656 2.72 -3.806C3.068 -4.115 3.357 -4.184 3.527 -4.184C3.925 -4.184 4.164 -3.836 4.164 -3.248S3.836 -1.514 3.656 -1.136C3.318 -0.438 2.839 -0.11 2.471 -0.11C1.813 -0.11 1.684 -0.936 1.684 -0.996C1.684 -1.016 1.684 -1.036 1.714 -1.156L2.202 -3.108Z' id='g1-112'/>
+<path d='M3.895 -3.726C3.616 -3.716 3.417 -3.497 3.417 -3.278C3.417 -3.138 3.507 -2.989 3.726 -2.989S4.184 -3.158 4.184 -3.547C4.184 -3.995 3.756 -4.403 2.999 -4.403C1.684 -4.403 1.315 -3.387 1.315 -2.949C1.315 -2.172 2.052 -2.022 2.341 -1.963C2.859 -1.863 3.377 -1.753 3.377 -1.205C3.377 -0.946 3.148 -0.11 1.953 -0.11C1.813 -0.11 1.046 -0.11 0.817 -0.638C1.196 -0.588 1.445 -0.887 1.445 -1.166C1.445 -1.395 1.285 -1.514 1.076 -1.514C0.817 -1.514 0.518 -1.305 0.518 -0.857C0.518 -0.289 1.086 0.11 1.943 0.11C3.557 0.11 3.945 -1.096 3.945 -1.544C3.945 -1.903 3.756 -2.152 3.636 -2.271C3.367 -2.55 3.078 -2.6 2.64 -2.69C2.281 -2.77 1.883 -2.839 1.883 -3.288C1.883 -3.577 2.122 -4.184 2.999 -4.184C3.248 -4.184 3.746 -4.115 3.895 -3.726Z' id='g1-115'/>
+<path d='M2.052 -3.985H2.989C3.188 -3.985 3.288 -3.985 3.288 -4.184C3.288 -4.294 3.188 -4.294 3.009 -4.294H2.132C2.491 -5.709 2.54 -5.908 2.54 -5.968C2.54 -6.137 2.421 -6.237 2.252 -6.237C2.222 -6.237 1.943 -6.227 1.853 -5.878L1.465 -4.294H0.528C0.329 -4.294 0.229 -4.294 0.229 -4.105C0.229 -3.985 0.309 -3.985 0.508 -3.985H1.385C0.667 -1.156 0.628 -0.986 0.628 -0.807C0.628 -0.269 1.006 0.11 1.544 0.11C2.56 0.11 3.128 -1.345 3.128 -1.425C3.128 -1.524 3.049 -1.524 3.009 -1.524C2.919 -1.524 2.909 -1.494 2.859 -1.385C2.431 -0.349 1.903 -0.11 1.564 -0.11C1.355 -0.11 1.255 -0.239 1.255 -0.568C1.255 -0.807 1.275 -0.877 1.315 -1.046L2.052 -3.985Z' id='g1-116'/>
+<path d='M3.487 -0.558C3.597 -0.149 3.945 0.11 4.374 0.11C4.722 0.11 4.951 -0.12 5.111 -0.438C5.28 -0.797 5.41 -1.405 5.41 -1.425C5.41 -1.524 5.32 -1.524 5.29 -1.524C5.191 -1.524 5.181 -1.484 5.151 -1.345C5.011 -0.787 4.822 -0.11 4.403 -0.11C4.194 -0.11 4.095 -0.239 4.095 -0.568C4.095 -0.787 4.214 -1.255 4.294 -1.604L4.573 -2.68C4.603 -2.829 4.702 -3.208 4.742 -3.357C4.792 -3.587 4.892 -3.965 4.892 -4.025C4.892 -4.204 4.752 -4.294 4.603 -4.294C4.553 -4.294 4.294 -4.284 4.214 -3.945C4.025 -3.218 3.587 -1.474 3.467 -0.946C3.457 -0.907 3.059 -0.11 2.331 -0.11C1.813 -0.11 1.714 -0.558 1.714 -0.927C1.714 -1.484 1.993 -2.271 2.252 -2.959C2.371 -3.258 2.421 -3.397 2.421 -3.587C2.421 -4.035 2.102 -4.403 1.604 -4.403C0.658 -4.403 0.289 -2.959 0.289 -2.869C0.289 -2.77 0.389 -2.77 0.408 -2.77C0.508 -2.77 0.518 -2.79 0.568 -2.949C0.817 -3.816 1.196 -4.184 1.574 -4.184C1.664 -4.184 1.823 -4.174 1.823 -3.856C1.823 -3.616 1.714 -3.328 1.654 -3.178C1.285 -2.192 1.076 -1.574 1.076 -1.086C1.076 -0.139 1.763 0.11 2.301 0.11C2.959 0.11 3.318 -0.339 3.487 -0.558Z' id='g1-117'/>
+<path d='M2.022 -3.292C2.078 -3.41 2.085 -3.466 2.085 -3.515C2.085 -3.731 1.89 -3.898 1.674 -3.898C1.409 -3.898 1.325 -3.682 1.29 -3.571L0.37 -0.551C0.363 -0.537 0.335 -0.446 0.335 -0.439C0.335 -0.356 0.551 -0.286 0.607 -0.286C0.656 -0.286 0.663 -0.3 0.711 -0.404L2.022 -3.292Z' id='g0-48'/>
+</defs>
+</svg>
+
+</body>
+
+</html>
